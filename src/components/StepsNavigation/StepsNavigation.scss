@@ -1,0 +1,19 @@
+@import "../../assets/variables.scss";
+
+.steps-navigation {
+  background-image: url("../../assets/images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 13rem;
+
+  &__btn {
+    width: 45px;
+    height: 45px;
+
+    &--active {
+      color: $marineBlue;
+      background-color: $lightBlue;
+      border-color: rgba($color: #000000, $alpha: 0);
+    }
+  }
+}

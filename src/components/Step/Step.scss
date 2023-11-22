@@ -1,0 +1,21 @@
+@import "../../assets/variables.scss";
+
+.step {
+  position: absolute;
+  top: calc(5rem + 35px * 1.5);
+  left: 0;
+  right: 0;
+  width: 90%;
+  background-color: $Alabaster;
+
+  &__title {
+    font-family: "Ubuntu-Bold";
+    color: $marineBlue;
+    font-size: 1.8rem;
+  }
+
+  &__desc {
+    color: $CoolGray;
+    font-size: 1.2rem;
+  }
+}

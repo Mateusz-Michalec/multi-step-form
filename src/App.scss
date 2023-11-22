@@ -1,0 +1,16 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./assets/variables.scss";
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Ubuntu-Bold";
+  src: url("./assets/fonts/Ubuntu-Bold.ttf") format("truetype");
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+}
