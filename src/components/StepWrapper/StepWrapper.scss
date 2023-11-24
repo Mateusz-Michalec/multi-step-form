@@ -2,11 +2,13 @@
 
 .step {
   position: absolute;
-  top: calc(5rem + 35px * 1.5);
   left: 0;
   right: 0;
-  width: 90%;
-  background-color: $Alabaster;
+  top: calc(5rem + 45px * 1.5);
+
+  &__label {
+    color: $marineBlue;
+  }
 
   &__title {
     font-family: "Ubuntu-Bold";
