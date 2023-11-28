@@ -16,3 +16,27 @@ export const StepOneForm = z.object({
 export type StepOneType = z.infer<typeof StepOneForm> & {
   [key: string]: string;
 };
+
+export const stepOneinputConfigs = [
+  {
+    label: "Name",
+    type: "text",
+    id: "name",
+    placeholder: "e.g Stephen King",
+    maxLength: 30,
+  },
+  {
+    label: "Email Address",
+    type: "email",
+    id: "email",
+    placeholder: "e.g. stephenking@lorem.com",
+    maxLength: 50,
+  },
+  {
+    label: "Phone Number",
+    type: "tel",
+    id: "phone",
+    placeholder: "e.g. 123 456 789",
+    maxLength: 9,
+  },
+];

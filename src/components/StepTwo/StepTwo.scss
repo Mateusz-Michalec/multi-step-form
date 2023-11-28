@@ -1,0 +1,49 @@
+@import "../../assets/variables.scss";
+
+.plan {
+  cursor: pointer;
+
+  .card-body {
+    cursor: pointer;
+  }
+
+  &:hover {
+    outline: 1px solid $purplishBlue;
+  }
+
+  &--active {
+    background-color: rgba($color: $pastelBlue, $alpha: 0.1);
+    outline: 1px solid $purplishBlue;
+  }
+
+  &__title {
+    color: $marineBlue;
+    font-family: "Ubuntu-Medium";
+  }
+
+  &__text {
+    color: $marineBlue;
+  }
+
+  &__subtitle {
+    color: $CoolGray;
+  }
+}
+
+.plan-switch-container {
+  background-color: rgba($color: $pastelBlue, $alpha: 0.1);
+
+  .plan-switch {
+    cursor: pointer;
+    background-color: $marineBlue;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 1%29'/%3e%3c/svg%3e");
+
+    width: 2.5rem;
+    height: 1.3rem;
+
+    &--active {
+      color: $marineBlue;
+      font-family: "Ubuntu-Medium";
+    }
+  }
+}

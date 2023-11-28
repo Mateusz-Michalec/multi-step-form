@@ -1,17 +1,19 @@
 import { useForm } from "react-hook-form";
-import useStepData from "../../hooks/useStepData";
-import { StepOneForm, StepOneType } from "../../models/StepOne";
+import {
+  StepOneForm,
+  StepOneType,
+  stepOneinputConfigs,
+} from "../../models/StepOne";
 import { StepProps } from "../../App";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
-import NextStepBtn from "../NextStepBtn/NextStepBtn";
+import StepWrapper from "../StepWrapper/StepWrapper";
+import useStepData from "../../hooks/useStepData";
+import StepsNavigation from "../StepsNavigation/StepsNavigation";
 
-const StepOne = ({ setFormData, goToNextStep }: StepProps) => {
-  const { stepData, handleInputChange } = useStepData({
-    name: "",
-    email: "",
-    phone: "",
-  });
+const StepOne = ({ fields, stepsNavigator, updateFormData }: StepProps) => {
+  const { stepData, handleInputChange } = useStepData(fields);
+
   const [isValidated, setIsValidated] = useState(false);
 
   const {
@@ -23,45 +25,24 @@ const StepOne = ({ setFormData, goToNextStep }: StepProps) => {
   });
 
   useEffect(() => {
-    if (isValidated && isValid) {
-      setFormData((prev) => ({ ...prev, ...stepData }));
-      goToNextStep();
+    if (isValid && isValidated) {
+      updateFormData(stepData);
+      stepsNavigator.goNext();
     }
-  }, [isValidated]);
+  }, [isValidated, isValid]);
 
   const validateStep = () => {
     trigger();
     setIsValidated(true);
   };
 
-  const inputConfigs = [
-    {
-      label: "Name",
-      type: "text",
-      id: "name",
-      placeholder: "e.g Stephen King",
-      maxLength: 30,
-    },
-    {
-      label: "Email Address",
-      type: "email",
-      id: "email",
-      placeholder: "e.g. stephenking@lorem.com",
-      maxLength: 50,
-    },
-    {
-      label: "Phone Number",
-      type: "tel",
-      id: "phone",
-      placeholder: "e.g. 123 456 789",
-      maxLength: 9,
-    },
-  ];
-
   return (
-    <>
+    <StepWrapper
+      title={"Personal info"}
+      desc={"Please provide your name, email adress, and phone number."}
+    >
       <form className="d-flex flex-column gap-3">
-        {inputConfigs.map((input) => {
+        {stepOneinputConfigs.map((input) => {
           const field = input.id;
           return (
             <div key={field}>
@@ -90,8 +71,11 @@ const StepOne = ({ setFormData, goToNextStep }: StepProps) => {
           );
         })}
       </form>
-      <NextStepBtn validateStep={validateStep} />
-    </>
+      <StepsNavigation
+        stepsNavigator={stepsNavigator}
+        validateStep={validateStep}
+      />
+    </StepWrapper>
   );
 };
 

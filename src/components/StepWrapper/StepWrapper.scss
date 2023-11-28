@@ -1,10 +1,8 @@
 @import "../../assets/variables.scss";
 
 .step {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(5rem + 45px * 1.5);
+  margin-top: -4.55rem;
+  margin-bottom: 6rem;
 
   &__label {
     color: $marineBlue;
