@@ -5,7 +5,6 @@ import iconPro from "../assets/icons/icon-pro.svg";
 export type StepTwoType = {
   plan: "Arcade" | "Advanced" | "Pro";
   billing: "Monthly" | "Yearly";
-  [key: string]: string;
 };
 
 type PlanData = {

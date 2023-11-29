@@ -13,9 +13,7 @@ export const StepOneForm = z.object({
     .regex(/^[0-9]*$/, "Invalid number!"),
 });
 
-export type StepOneType = z.infer<typeof StepOneForm> & {
-  [key: string]: string;
-};
+export type StepOneType = z.infer<typeof StepOneForm>;
 
 export const stepOneinputConfigs = [
   {

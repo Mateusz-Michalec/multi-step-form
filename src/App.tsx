@@ -6,9 +6,11 @@ import { StepOneType } from "./models/StepOne";
 import StepTwo from "./components/StepTwo/StepTwo";
 import { StepTwoType } from "./models/StepTwo";
 import useMultiStepForm, { StepsNavigator } from "./hooks/useMultiStepForm";
+import StepThree from "./components/StepThree/StepThree";
+import { StepThreeType } from "./models/StepThree";
 
-export type FormData = StepOneType & StepTwoType;
-export type StepFields = StepOneType | StepTwoType;
+export type FormData = StepOneType & StepTwoType & StepThreeType;
+export type StepFields = StepOneType | StepTwoType | StepThreeType;
 
 export type StepProps = {
   fields: StepFields;
@@ -22,6 +24,7 @@ const INIT_FORM_DATA: FormData = {
   phone: "",
   plan: "Arcade",
   billing: "Monthly",
+  addons: [],
 };
 
 function App() {
@@ -46,6 +49,11 @@ function App() {
         plan: formData.plan,
         billing: formData.billing,
       }}
+      stepsNavigator={stepsNavigator}
+      updateFormData={updateFormData}
+    />,
+    <StepThree
+      fields={{ addons: formData.addons }}
       stepsNavigator={stepsNavigator}
       updateFormData={updateFormData}
     />,

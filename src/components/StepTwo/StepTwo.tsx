@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { plansData } from "../../models/StepTwo";
+import { StepTwoType, plansData } from "../../models/StepTwo";
 import "./StepTwo.scss";
 import StepWrapper from "../StepWrapper/StepWrapper";
 import { StepProps } from "../../App";
@@ -9,12 +9,14 @@ import StepsNavigation from "../StepsNavigation/StepsNavigation";
 const StepTwo = ({ fields, updateFormData, stepsNavigator }: StepProps) => {
   const { stepData, setStepData, handleInputChange } = useStepData(fields);
 
-  const validateStep = () => {
+  const stepTwoData = stepData as StepTwoType;
+
+  const onNext = () => {
     updateFormData(stepData);
     stepsNavigator.goNext();
   };
 
-  const updateFormDataOnBack = () => {
+  const onBack = () => {
     updateFormData(stepData);
     stepsNavigator.goBack();
   };
@@ -28,7 +30,7 @@ const StepTwo = ({ fields, updateFormData, stepsNavigator }: StepProps) => {
         <div
           key={plan.plan}
           className={`${
-            stepData.plan === plan.plan ? "plan--active" : ""
+            stepTwoData.plan === plan.plan ? "plan--active" : ""
           } card plan mb-3 form-check`}
         >
           <input
@@ -44,7 +46,7 @@ const StepTwo = ({ fields, updateFormData, stepsNavigator }: StepProps) => {
             <div>
               <h6 className="card-title plan__title">{plan.plan}</h6>
               <p className="card-subtitle plan__subtitle">
-                ${plan.billing[stepData.billing]}/
+                ${plan.billing[stepTwoData.billing]}/
               </p>
               <p className="card-text plan__text">2 months free</p>
             </div>
@@ -54,7 +56,7 @@ const StepTwo = ({ fields, updateFormData, stepsNavigator }: StepProps) => {
       <div className="d-flex gap-4 plan-switch-container mt-4 p-3 rounded justify-content-center">
         <span
           className={
-            stepData.billing === "Monthly"
+            stepTwoData.billing === "Monthly"
               ? "plan-switch--active"
               : "text-secondary"
           }
@@ -64,14 +66,15 @@ const StepTwo = ({ fields, updateFormData, stepsNavigator }: StepProps) => {
 
         <div className="form-check form-switch">
           <input
-            checked={stepData.billing === "Yearly" ? true : false}
+            checked={stepTwoData.billing === "Yearly" ? true : false}
             onChange={() =>
               setStepData((prev) => ({
                 ...prev,
-                billing: stepData.billing === "Monthly" ? "Yearly" : "Monthly",
+                billing:
+                  stepTwoData.billing === "Monthly" ? "Yearly" : "Monthly",
               }))
             }
-            value={stepData.billing}
+            value={stepTwoData.billing}
             type="checkbox"
             className="form-check-input plan-switch"
             role="switch"
@@ -80,7 +83,7 @@ const StepTwo = ({ fields, updateFormData, stepsNavigator }: StepProps) => {
 
         <span
           className={
-            stepData.billing === "Yearly"
+            stepTwoData.billing === "Yearly"
               ? "plan-switch--active"
               : "text-secondary"
           }
@@ -90,8 +93,8 @@ const StepTwo = ({ fields, updateFormData, stepsNavigator }: StepProps) => {
       </div>
       <StepsNavigation
         stepsNavigator={stepsNavigator}
-        validateStep={validateStep}
-        updateFormDataOnBack={updateFormDataOnBack}
+        onNext={onNext}
+        onBack={onBack}
       />
     </StepWrapper>
   );

@@ -31,7 +31,7 @@ const StepOne = ({ fields, stepsNavigator, updateFormData }: StepProps) => {
     }
   }, [isValidated, isValid]);
 
-  const validateStep = () => {
+  const onNext = () => {
     trigger();
     setIsValidated(true);
   };
@@ -43,14 +43,14 @@ const StepOne = ({ fields, stepsNavigator, updateFormData }: StepProps) => {
     >
       <form className="d-flex flex-column gap-3">
         {stepOneinputConfigs.map((input) => {
-          const field = input.id;
+          const field = input.id as keyof StepOneType;
           return (
             <div key={field}>
               <label className="step__label" htmlFor={`${field}`}>
                 {input.label}
               </label>
               <input
-                value={stepData[field]}
+                value={(stepData as StepOneType)[field]}
                 {...register(field)}
                 onChange={(e) => handleInputChange(e)}
                 className={`${
@@ -71,10 +71,7 @@ const StepOne = ({ fields, stepsNavigator, updateFormData }: StepProps) => {
           );
         })}
       </form>
-      <StepsNavigation
-        stepsNavigator={stepsNavigator}
-        validateStep={validateStep}
-      />
+      <StepsNavigation stepsNavigator={stepsNavigator} onNext={onNext} />
     </StepWrapper>
   );
 };
